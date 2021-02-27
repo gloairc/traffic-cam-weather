@@ -38,3 +38,9 @@ height: 7vh
 #traffic-cam-image-div{
   border: 3px solid red
 }
+
+#traffic-cam-image{
+  object-fit: contain;
+  /* width: 100%; */
+  height: 100%
+}
