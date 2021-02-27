@@ -23,23 +23,40 @@ function App() {
   // useState for chosenlocation
   const [queryString, setQueryString] = useState("")
   const [cameraData, setCameraData] = useState({})
+  const [weatherData, setWeatherData] = useState([])
 
   useEffect(() => {
     if (queryString !== "") {//axios API if querystring not empty
-      axios
-        .get("https://api.data.gov.sg/v1/transport/traffic-images?date_time=" + queryString)
-        .then((response) => {
-          console.log("axios response", response.data);
-          setCameraData(response.data.items[0]) //object
-          console.log("cameraData", cameraData)
-        })
-        .catch((error) => {
-          console.log("axios error", error);
-        });
+      axios.all(
+        [axios.get("https://api.data.gov.sg/v1/transport/traffic-images?date_time=" + queryString),
+        axios.get("https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date_time=" + queryString)]
+      )
+        .then(axios.spread((response1, response2) => {
+          setCameraData(response1.data.items[0]) //object
+
+          let areaNforecastArray = []
+          const forecast = response2.data.items[0].forecasts; //[{area:"AMK", forecast="Fair"}, {},{}]
+          const area_metadata = response2.data.area_metadata //[{name:"AMK", label_location:{}}]
+          // Loop the area_metadata, for each {} in array, filter forecast [{}] with matching name, combined forecast with area_metadata
+          for (let i = 0; i < area_metadata.length; i++) {
+            //filter the {} with matching area
+            let correspondingForecast = forecast.filter((forecastData) => forecastData.area === area_metadata[i].name); //[{area:"AMK", forcast:"windy"}]
+            //have a combined {} of name, label_location, forecast
+            let areaNforecast = { ...area_metadata[i], forecast: correspondingForecast[0].forecast };
+
+            areaNforecastArray.push(areaNforecast)
+          }
+          // console.log("areaNforecastArray inside", areaNforecastArray)
+          setWeatherData(areaNforecastArray)
+        }))
+        .catch(axios.spread((error1, error2) => {
+          console.log("axios traffic error", error1);
+          console.log("axios weather error", error2);
+        }));
     }
   }, [queryString])
 
-
+  console.log("weathdata outside", weatherData)
   return (
     <div class="container-fluid px-0" id="overall-app-cont">
 
