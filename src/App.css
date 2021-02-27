@@ -24,7 +24,17 @@ height: 7vh
   height: 40vh
 }
 
+#table-cont{
+  overflow-y: scroll;
+  height: 35vh;
+  border: 1px solid black;
+}
+
 #weather-cam-image-cont{
   background-color: salmon;
   height:40vh; 
+}
+
+#traffic-cam-image-div{
+  border: 3px solid red
 }

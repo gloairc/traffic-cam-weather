@@ -7,24 +7,12 @@ import axios from "axios";
 import { React, useEffect, useState } from "react";
 
 function App() {
-  //either set up the url for the axios
-  // figure out how to combine the tables lat-long => readable name
-
-  // <DATETIME/>: date input, time input => urlencode => pass up to APP
-  //APP => make 2 axios traffic-cam API & weather API, 
-  // setState for traffic, setState for weather
-  //APP => pass down to readable location list & camera image & weather info to <LocationList/> 
-  // on click of LocationList => => setState in APP => pass down to <WeatherCamImage /> show image & weather
-
-  //USESTATE
-  //useState for axios url
-  //useState for traffic cam API
-  // useState for weather API
   // useState for chosenlocation
   const [queryString, setQueryString] = useState("")
   const [cameraData, setCameraData] = useState({})
   const [weatherData, setWeatherData] = useState([])
   const [camNForecastData, setCamNForecastData] = useState([])
+  const [chosenLocation, setChosenLocation] = useState({})
 
   useEffect(() => {//setCameraData & setWeatherData
     if (queryString !== "") {//axios API if querystring not empty
@@ -99,6 +87,11 @@ function App() {
     }
   }, [cameraData, weatherData])
 
+  const handleViewClick = (data) => {
+    console.log("handleviewclick data", data)
+    setChosenLocation(data)
+  }
+
   return (
     <div class="container-fluid px-0" id="overall-app-cont">
 
@@ -106,9 +99,9 @@ function App() {
 
       <DateTime setQueryString={setQueryString} />
 
-      <LocationList cameraData={cameraData} camNForecastData={camNForecastData} />
+      <LocationList cameraData={cameraData} camNForecastData={camNForecastData} handleViewClick={handleViewClick} />
 
-      <WeatherCamImage />
+      <WeatherCamImage chosenLocation={chosenLocation} />
 
     </div>
   );
