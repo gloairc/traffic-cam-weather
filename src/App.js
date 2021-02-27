@@ -4,6 +4,7 @@ import DateTime from "./components/DataTime";
 import LocationList from "./components/LocationList";
 import WeatherCamImage from "./components/WeatherCamImage";
 import axios from "axios";
+import { React, useEffect, useState } from "react";
 
 function App() {
   //either set up the url for the axios
@@ -20,15 +21,33 @@ function App() {
   //useState for traffic cam API
   // useState for weather API
   // useState for chosenlocation
+  const [queryString, setQueryString] = useState("")
+  const [cameraData, setCameraData] = useState({})
+
+  useEffect(() => {
+    if (queryString !== "") {//axios API if querystring not empty
+      axios
+        .get("https://api.data.gov.sg/v1/transport/traffic-images?date_time=" + queryString)
+        .then((response) => {
+          console.log("axios response", response.data);
+          setCameraData(response.data.items[0]) //object
+          console.log("cameraData", cameraData)
+        })
+        .catch((error) => {
+          console.log("axios error", error);
+        });
+    }
+  }, [queryString])
+
 
   return (
     <div class="container-fluid px-0" id="overall-app-cont">
 
       <Header />
 
-      <DateTime />
+      <DateTime setQueryString={setQueryString} />
 
-      <LocationList />
+      <LocationList cameraData={cameraData} />
 
       <WeatherCamImage />
 
