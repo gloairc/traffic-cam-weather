@@ -6,6 +6,7 @@ import { Form, Row, Col, Button } from "react-bootstrap";
 
 const DateTime = (props) => {
     const [formData, setFormData] = useState({})
+
     const handleSubmit = (event) => {
         event.preventDefault();
         //manipulate the formData {date:YYYY-MM-DD, time:HH:MM} to to form a valid query string

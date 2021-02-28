@@ -13,6 +13,7 @@ function App() {
   const [weatherData, setWeatherData] = useState([])
   const [camNForecastData, setCamNForecastData] = useState([])
   const [chosenLocation, setChosenLocation] = useState({})
+  const [showWeatherCam, setShowWeatherCam] = useState(false)
 
   useEffect(() => {//setCameraData & setWeatherData
     if (queryString !== "") {//axios API if querystring not empty
@@ -43,13 +44,9 @@ function App() {
     }
   }, [queryString])
 
-  console.log("weathdata outside", weatherData)
-  console.log("cameradata outside", cameraData)
-
-
   // if cameraData & weatherData is not empty, find nearest area for camera based on long & lat
   let cameraNforecastArray = [];
-  useEffect(() => {
+  useEffect(() => {//form camNForecastData
     if (Object.keys(cameraData).length !== 0 && weatherData.length !== 0) {
 
       for (let i = 0; i < cameraData.cameras.length; i++) { //walk through camera array 
@@ -87,8 +84,15 @@ function App() {
     }
   }, [cameraData, weatherData])
 
+  useEffect(() => {//if search date-time, dont show weatherCam
+    if (queryString !== "") {
+      setShowWeatherCam(false)
+    }
+  }, [queryString])
+
   const handleViewClick = (data) => {
     setChosenLocation(data)
+    setShowWeatherCam(true)
   }
 
   return (
@@ -100,7 +104,7 @@ function App() {
 
       <LocationList cameraTime={cameraData.timestamp} camNForecastData={camNForecastData} handleViewClick={handleViewClick} />
 
-      <WeatherCamImage chosenLocation={chosenLocation} />
+      <WeatherCamImage chosenLocation={chosenLocation} showWeatherCam={showWeatherCam} />
 
       <Footer />
     </div>

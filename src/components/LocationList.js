@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Table, Button } from "react-bootstrap";
 
 const LocationList = (props) => {
-    //clean up props.cameraData.timestamp here, remove +08:00, seperate date,time, reorder data & time
     const [camNForecastData, setCamNForecastData] = useState([])
     const [loaded, setLoaded] = useState(false)
     const [dateTimeAcquired, setDateTimeAcquired] = useState("selected date & time")
@@ -24,7 +23,7 @@ const LocationList = (props) => {
 
     return (
         <div class="container-fluid pt-2" id="location-list-cont">
-            List of traffic cameras on {dateTimeAcquired}
+            List of traffic cameras for <span class="span">{dateTimeAcquired}</span>
             {/* table list of S/N, location, camera number */}
 
             <div class="container-fluid" id="table-cont" >

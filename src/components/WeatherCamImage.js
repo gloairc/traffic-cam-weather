@@ -6,6 +6,15 @@ const WeatherCamImage = (props) => {
     const [imageTime, setImageTime] = useState("");
     const [geolocation, setGeoLocation] = useState({})
 
+
+    // useEffect(() => {
+    //     if (props.showWeatherCam === false) {
+    //        noShow
+    //     } else {
+
+    //     }
+    // }, [props.chosenLocation])
+
     useEffect(() => {
         if (Object.keys(props.chosenLocation).length !== 0) {
             setLocationChosen(true)
@@ -21,19 +30,22 @@ const WeatherCamImage = (props) => {
         (
             <>
                 <div>
-                    <h5>Nearest Available Weather Info</h5>
-                    <strong>Area: </strong>{props.chosenLocation.locationName}
-                    <br />
-                    <strong>Weather: </strong>{props.chosenLocation.locationName_forecast}
+                    <h6>Nearest Available Weather Info</h6>
+                    <p><strong>Area: </strong>{props.chosenLocation.locationName}
+                        <br />
+                        <strong>Weather: </strong>{props.chosenLocation.locationName_forecast}
+                    </p>
                 </div>
                 <div>
-                    <h5>Traffic Camera Info</h5>
-                    <strong>Camera ID: </strong>{props.chosenLocation.camera_id}
-                    <br />
-                    <strong>Exact Geo-location:  </strong>({(geolocation.latitude)}, {(geolocation.longitude)})
+                    <h6>Traffic Camera Info</h6>
+                    <p>
+                        <strong>Camera ID: </strong>{props.chosenLocation.camera_id}
+                        <br />
+                        <strong>Exact Geo-location:  </strong>({(geolocation.latitude)}, {(geolocation.longitude)})
                         {/* </strong>({(geolocation.latitude).toFixed(3)}, {(geolocation.longitude).toFixed(3)}) */}
-                    <br />
-                    <strong>Time of image: </strong>{imageTime}
+                        <br />
+                        <strong>Time of image: </strong>{imageTime}
+                    </p>
                 </div>
             </>
         )
@@ -54,11 +66,14 @@ const WeatherCamImage = (props) => {
 
     const renderImage = (locationChosen === true) ? haveImage : <></>
 
+    const noShow = (
+        <></>
+    )
 
-    return (
-        <div class="container-fluid d-flex py-2" id="weather-cam-image-cont">
-            <div class="row">
-                <div class="container-fluid col-sm-12 col-md-5 py-1"><h3>Details for camera {props.chosenLocation.camera_id}</h3>
+    const showWeatherCamImage = (
+        <>
+            <div class="container-fluid row">
+                <div class="container-fluid col-sm-12 col-md-5 py-1"><h5 id="details-h5">Details for camera <span class="span">{props.chosenLocation.camera_id}</span></h5>
                     {renderDetails}
                 </div >
 
@@ -66,6 +81,15 @@ const WeatherCamImage = (props) => {
                     {renderImage}
                 </div>
             </div>
+        </>
+    )
+
+
+    const showOrNoShow = (props.showWeatherCam === true) ? showWeatherCamImage : noShow
+
+    return (
+        <div class="container-fluid d-flex py-2" id="weather-cam-image-cont">
+            {showOrNoShow}
         </div>
     )
 }
