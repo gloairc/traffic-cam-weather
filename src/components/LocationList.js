@@ -5,12 +5,18 @@ const LocationList = (props) => {
     //clean up props.cameraData.timestamp here, remove +08:00, seperate date,time, reorder data & time
     const [camNForecastData, setCamNForecastData] = useState([])
     const [loaded, setLoaded] = useState(false)
+    const [dateTimeAcquired, setDateTimeAcquired] = useState("selected date & time")
 
     useEffect(() => {
-        setLoaded(false)
+        if (props.cameraTime !== undefined) {
+            let formattedDate = new Date(props.cameraTime).toLocaleString("en-AU")
+            setDateTimeAcquired(formattedDate)
+        }
         if (props.camNForecastData.length !== 0) {
             setCamNForecastData(props.camNForecastData)
             setLoaded(true)
+        } else {
+            setLoaded(false)
         }
     }, [props.camNForecastData])
 
@@ -18,7 +24,7 @@ const LocationList = (props) => {
 
     return (
         <div class="container-fluid" id="location-list-cont">
-            Showing traffic camera list acquired on:  {props.cameraData.timestamp}
+            Showing list of traffic cameras on {dateTimeAcquired}
             {/* table list of S/N, location, camera number */}
 
             <div class="container-fluid" id="table-cont" >

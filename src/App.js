@@ -98,7 +98,7 @@ function App() {
 
       <DateTime setQueryString={setQueryString} />
 
-      <LocationList cameraData={cameraData} camNForecastData={camNForecastData} handleViewClick={handleViewClick} />
+      <LocationList cameraTime={cameraData.timestamp} camNForecastData={camNForecastData} handleViewClick={handleViewClick} />
 
       <WeatherCamImage chosenLocation={chosenLocation} />
 
