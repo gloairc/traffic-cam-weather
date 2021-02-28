@@ -3,11 +3,11 @@ import Header from "./components/Header"
 import DateTime from "./components/DataTime";
 import LocationList from "./components/LocationList";
 import WeatherCamImage from "./components/WeatherCamImage";
+import Footer from "./components/Footer";
 import axios from "axios";
 import { React, useEffect, useState } from "react";
 
 function App() {
-  // useState for chosenlocation
   const [queryString, setQueryString] = useState("")
   const [cameraData, setCameraData] = useState({})
   const [weatherData, setWeatherData] = useState([])
@@ -88,7 +88,6 @@ function App() {
   }, [cameraData, weatherData])
 
   const handleViewClick = (data) => {
-    console.log("handleviewclick data", data)
     setChosenLocation(data)
   }
 
@@ -103,6 +102,7 @@ function App() {
 
       <WeatherCamImage chosenLocation={chosenLocation} />
 
+      <Footer />
     </div>
   );
 }
