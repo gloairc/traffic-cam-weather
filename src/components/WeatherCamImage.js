@@ -30,8 +30,9 @@ const WeatherCamImage = (props) => {
                     <h5>Traffic Camera Info</h5>
                     <strong>Camera ID: </strong>{props.chosenLocation.camera_id}
                     <br />
-                    <strong>Exact Geo-location: </strong>({(geolocation.latitude).toFixed(3)}, {(geolocation.longitude).toFixed(3)})
-                <br />
+                    <strong>Exact Geo-location:  </strong>({(geolocation.latitude)}, {(geolocation.longitude)})
+                        {/* </strong>({(geolocation.latitude).toFixed(3)}, {(geolocation.longitude).toFixed(3)}) */}
+                    <br />
                     <strong>Time of image: </strong>{imageTime}
                 </div>
             </>
@@ -55,13 +56,15 @@ const WeatherCamImage = (props) => {
 
 
     return (
-        <div class="container-fluid  d-flex flex-row" id="weather-cam-image-cont">
-            <div class="container-fluid col-4"><h3>Details for camera {props.chosenLocation.camera_id}</h3>
-                {renderDetails}
-            </div >
+        <div class="container-fluid d-flex" id="weather-cam-image-cont">
+            <div class="row">
+                <div class="container-fluid col-sm-12 col-md-5 py-1"><h3>Details for camera {props.chosenLocation.camera_id}</h3>
+                    {renderDetails}
+                </div >
 
-            <div class="container-fluid px-0 col-8" id="traffic-cam-image-div">
-                {renderImage}
+                <div class="container-fluid col-sm-12 col-md-7 py-1" id="traffic-cam-image-div">
+                    {renderImage}
+                </div>
             </div>
         </div>
     )
