@@ -4,52 +4,47 @@
   color: white;
   color: #61dafb;
 } */
-/* body{
+ body{
   min-height: 100vh;
   min-height: -webkit-fill-available;
 }
 
 html{
   height: -webkit-fill-available;
-} */
-/* 
-h1 {
-  font-size: 3vw;
-}
-h2 {
-  font-size: 3.0vh;
-}
-p {
-  font-size: 2vmin;
-} */
+} 
 
-#overall-app-cont{
-  /* background-color:#61dafb ; */
+/* #overall-app-cont{
+  background-color:#61dafb ;
   height: 100vh;
-}
+} */
 
 #header-cont{
-height: 7vh;
+background-color: #98e5fa;
 }
 
-#date-time-cont{
+.icon{
+max-width: 30px;
+height: auto
+}
+
+/* #date-time-cont{
   background-color: seashell;
   height: 10vh;
-}
+} */
 
 #location-list-cont{
-  background-color: sandybrown;
-  height: 40vh
+  /* background-color: seashell; */
+  height: 43vh
 }
 
 #table-cont{
   overflow-y: scroll;
-  height: 35vh;
+  height: 87%;
   border: 2px solid black;
   border-radius: 10px;
 }
 
-/* entire scrollbar */
+/* scrollbar */
 #table-cont::-webkit-scrollbar { 
   width: 12px;
   border-radius: 10px;
@@ -68,20 +63,20 @@ height: 7vh;
 }
 
 
-#weather-cam-image-cont{
+/* #weather-cam-image-cont{
   background-color: salmon;
   height:40vh; 
-}
+} */
 
-#traffic-cam-image-div{
-  /* border: 3px solid red; */
-  height: 100%
-}
+/* #traffic-cam-image-div{
+   border: 3px solid red; 
+  height: 100% 
+} */
 
 #traffic-cam-image{
   object-fit: contain;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   /* border: 1px solid black; */
   /* background-color: whitesmoke; */
   border-radius: 5px;

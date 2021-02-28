@@ -23,8 +23,8 @@ const LocationList = (props) => {
     console.log("locationlist array outside, ", camNForecastData)
 
     return (
-        <div class="container-fluid" id="location-list-cont">
-            Showing list of traffic cameras on {dateTimeAcquired}
+        <div class="container-fluid pt-2" id="location-list-cont">
+            List of traffic cameras on {dateTimeAcquired}
             {/* table list of S/N, location, camera number */}
 
             <div class="container-fluid" id="table-cont" >
@@ -32,7 +32,7 @@ const LocationList = (props) => {
                     <thead>
                         <tr>
                             <th>S/N</th>
-                            <th>Nearest Location</th>
+                            <th>Nearest Area</th>
                             <th>Camera ID</th>
                             <th>View</th>
                         </tr>
@@ -45,7 +45,7 @@ const LocationList = (props) => {
                                         <td>{index + 1}</td>
                                         <td>{data.locationName}</td>
                                         <td>{data.camera_id}</td>
-                                        <td><Button
+                                        <td><Button size="sm"
                                             onClick={() => {
                                                 console.log("handle view click", data)
                                                 props.handleViewClick(data);

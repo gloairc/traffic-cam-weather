@@ -1,8 +1,7 @@
 import { React, useState } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
 
-// TRAFFIC CAMERA API
-//Query: 2021-02-26T12:27:50+08:00
+// API Query: 2021-02-26T12:27:50+08:00
 //URL: https://api.data.gov.sg/v1/transport/traffic-images?date_time=2021-02-26T12%3A27%3A50%2B08%3A00
 
 const DateTime = (props) => {
@@ -16,38 +15,42 @@ const DateTime = (props) => {
     };
 
     return (
-        <div class="container-fluid d-flex" id="date-time-cont">
+        <div class="container-fluid pt-2 pb-1" id="date-time-cont">
             <Form onSubmit={handleSubmit}>
                 <Row>
-                    <Col>
-                        <Form.Group controlId="dateInput">
-                            <Form.Label>Date:</Form.Label>
-                            <Form.Control
-                                type="date"
-                                title="date"
-                                onChange={(event) => {
-                                    setFormData((state) => {
-                                        return { ...state, date: event.target.value }
-                                    })
-                                }}
-                            />
+                    <Col id="date-col" xs="auto">
+                        <Form.Group as={Row} controlId="dateInput">
+                            <Form.Label column sm={2}>Date:</Form.Label>
+                            <Col sm={10}>
+                                <Form.Control
+                                    type="date"
+                                    title="date"
+                                    onChange={(event) => {
+                                        setFormData((state) => {
+                                            return { ...state, date: event.target.value }
+                                        })
+                                    }}
+                                />
+                            </Col>
                         </Form.Group>
                     </Col>
-                    <Col>
-                        <Form.Group controlId="timeInput">
-                            <Form.Label>Time:</Form.Label>
-                            <Form.Control
-                                type="time"
-                                title="time"
-                                onChange={(event) => {
-                                    setFormData((state) => {
-                                        return { ...state, time: event.target.value }
-                                    })
-                                }}
-                            />
+                    <Col id="time-col" xs="auto">
+                        <Form.Group as={Row} controlId="timeInput">
+                            <Form.Label column sm={3}>Time:</Form.Label>
+                            <Col sm={9}>
+                                <Form.Control
+                                    type="time"
+                                    title="time"
+                                    onChange={(event) => {
+                                        setFormData((state) => {
+                                            return { ...state, time: event.target.value }
+                                        })
+                                    }}
+                                />
+                            </Col>
                         </Form.Group>
                     </Col>
-                    <Col>
+                    <Col id="btn-col" class="py-1">
                         <Button variant="primary" type="submit">
                             Search
 </Button>

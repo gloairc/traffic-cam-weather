@@ -56,7 +56,7 @@ const WeatherCamImage = (props) => {
 
 
     return (
-        <div class="container-fluid d-flex" id="weather-cam-image-cont">
+        <div class="container-fluid d-flex py-2" id="weather-cam-image-cont">
             <div class="row">
                 <div class="container-fluid col-sm-12 col-md-5 py-1"><h3>Details for camera {props.chosenLocation.camera_id}</h3>
                     {renderDetails}
