@@ -1,5 +1,5 @@
 # traffic-cam-weather
-Retrieve traffic camera photos &amp; weather info at specified date &amp; time using data.gov.sg API
+Retrieve traffic camera photos &amp; weather info of a specified date &amp; time using data.gov.sg API
 
 ### Tech used
 1. ReactJS
