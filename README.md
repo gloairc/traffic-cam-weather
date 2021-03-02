@@ -28,4 +28,8 @@ Retrieve traffic camera photos &amp; weather info at specified date &amp; time u
 4. Fix the footer at the bottom of the viewport.
 5. On click of traffic camera image, a modal to pop out to show the image in bigger resolution.
 6. Fix stlying bug for smaller viewports (e.g. Mobile-S 320px) 
+<<<<<<< HEAD
 7. ~~Round up the exact geo-location to 3 d.p (e.g using toFixed(3))~~
+=======
+7. Round up the exact geo-location to 3 d.p (e.g using toFixed(3))
+>>>>>>> 1fec663a644a4c3d128ba095c52827d7bcf266b2
