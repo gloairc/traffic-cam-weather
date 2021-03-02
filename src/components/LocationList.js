@@ -19,7 +19,7 @@ const LocationList = (props) => {
         }
     }, [props.camNForecastData])
 
-    console.log("locationlist array outside, ", camNForecastData)
+    // console.log("locationlist array outside, ", camNForecastData)
 
     return (
         <div class="container-fluid pt-2" id="location-list-cont">
@@ -46,7 +46,7 @@ const LocationList = (props) => {
                                         <td>{data.camera_id}</td>
                                         <td><Button size="sm"
                                             onClick={() => {
-                                                console.log("handle view click", data)
+                                                // console.log("handle view click", data)
                                                 props.handleViewClick(data);
                                             }}
                                             variant="primary"

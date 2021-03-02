@@ -6,21 +6,13 @@ const WeatherCamImage = (props) => {
     const [imageTime, setImageTime] = useState("");
     const [geolocation, setGeoLocation] = useState({})
 
-
-    // useEffect(() => {
-    //     if (props.showWeatherCam === false) {
-    //        noShow
-    //     } else {
-
-    //     }
-    // }, [props.chosenLocation])
-
     useEffect(() => {
         if (Object.keys(props.chosenLocation).length !== 0) {
             setLocationChosen(true)
             let formattedDate = new Date(props.chosenLocation.timestamp).toLocaleString("en-AU")
             setImageTime(formattedDate)
-            setGeoLocation(props.chosenLocation.location)
+            let newGeo = { "latitude": (props.chosenLocation.location.latitude).toFixed(3), "longitude": (props.chosenLocation.location.longitude).toFixed(3) }
+            setGeoLocation(newGeo)
         } else {
             setLocationChosen(false)
         }
@@ -42,7 +34,6 @@ const WeatherCamImage = (props) => {
                         <strong>Camera ID: </strong>{props.chosenLocation.camera_id}
                         <br />
                         <strong>Exact Geo-location:  </strong>({(geolocation.latitude)}, {(geolocation.longitude)})
-                        {/* </strong>({(geolocation.latitude).toFixed(3)}, {(geolocation.longitude).toFixed(3)}) */}
                         <br />
                         <strong>Time of image: </strong>{imageTime}
                     </p>

@@ -80,7 +80,7 @@ function App() {
         cameraNforecastArray.push(combinedCameraNForecast)
       }
       setCamNForecastData(cameraNforecastArray)
-      console.log("cameraNforecastArray", cameraNforecastArray)
+      // console.log("cameraNforecastArray", cameraNforecastArray)
     }
   }, [cameraData, weatherData])
 
